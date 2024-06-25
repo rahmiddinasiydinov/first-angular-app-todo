@@ -6,39 +6,34 @@ import { type NewTaskData } from "./new-task/new-task.model";
 import { TasksService } from "./tasks.service";
 
 @Component({
-    selector: 'app-tasks',
-    standalone: true,
-    templateUrl: './tasks.component.html',
-    styleUrl: './tasks.component.css',
-    imports: [TaskComponent, NewTaskComponent]
+  selector: 'app-tasks',
+  standalone: true,
+  templateUrl: './tasks.component.html',
+  styleUrl: './tasks.component.css',
+  imports: [TaskComponent, NewTaskComponent]
 })
 
 
 
 export class TasksComponent {
-    @Input() name!: string;
-    @Input({required: true}) userId!: string
-    isAddingTask = false;
-
-    constructor(private tasksService: TasksService) {}
-
-      get selectedUserTasks() {
-        return this.tasksService.getUserTasks(this.userId)
-      }
-
-      onCompleteTask(id: string) {
-      }
-
-      onStartAddTask(){
-        this.isAddingTask = true
-      }
-
-      onCancelAddTask(){
-        this.isAddingTask = false
-      }
-
-      onAddTask(taskData: NewTaskData){
-
-         this.isAddingTask = false
-      }
+  @Input() name!: string;
+  @Input({required: true}) userId!: string
+  isAddingTask = false;
+  
+  constructor(private tasksService: TasksService) {}
+  
+  get selectedUserTasks() {
+    return this.tasksService.getUserTasks(this.userId)
+  }
+  
+  onCompleteTask(id: string) {
+  }
+  
+  onStartAddTask(){
+    this.isAddingTask = true
+  }
+  
+  onCloseAddTask(){
+    this.isAddingTask = false
+  }
 }
